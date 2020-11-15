@@ -10,15 +10,8 @@ app.listen(port, ()=>{
 	console.log(`server is listening on port:${port}`)
 })
 
-const mongoose = require('mongoose');
-
-const UserSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
-});
-
-module.exports= mongoose.model('User',UserSchema)
+const User=require('./models/User');
+mongoose.connect('mongodb://localhost/userData')
 
 // CREATE
 app.post('/users',(req,res)=>{
